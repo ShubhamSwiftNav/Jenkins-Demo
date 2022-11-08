@@ -15,6 +15,7 @@ pipeline {
     stage("build") { 
         steps {
         echo 'building the application...'
+        sh 'rm -rf play'
         sh 'mkdir play && cd play && cp -r /home/jangoo/Desktop/demo/ .'
         sh 'cd play && mkdir build && cd build && cmake ../.. && cmake --build .'
         sh ''
