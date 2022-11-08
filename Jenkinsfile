@@ -15,7 +15,7 @@ pipeline {
     stage("build") { 
         steps {
         echo 'building the application...'
-        sh 'mkdir play && cd play && cp -r /home/Desktop/demo/ *.'
+        sh 'mkdir play && cd play && cp -r /Home/Desktop/demo/ *.'
         sh 'cd play && mkdir build && cd build && cmake .. && cmake --build .'
         sh ''
     }}
