@@ -16,7 +16,7 @@ pipeline {
         steps {
         echo 'building the application...'
         sh 'mkdir play && cd play && cp -r /home/jangoo/Desktop/demo/ .'
-        sh 'cd play && mkdir build && cd build && cmake .. && cmake --build .'
+        sh 'cd play && mkdir build && cd build && cmake ../.. && cmake --build .'
         sh ''
     }}
     stage("test") {
