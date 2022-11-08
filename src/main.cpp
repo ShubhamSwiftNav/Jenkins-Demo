@@ -7,6 +7,6 @@ int main(int argc, char* argv[])
    auto factorial = Factorial::GetFactorial(n);
 
    std::cout << "The factorial of " << n << " = " << factorial << std::endl; 
-   std::cout<<"hello"<<endl;   
+   std::cout<<"hello"<<std::endl;   
    return 0;
 }
