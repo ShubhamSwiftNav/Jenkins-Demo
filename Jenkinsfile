@@ -25,10 +25,10 @@ pipeline {
           echo 'testing the application...'
           sh "play/build/tst/Factorial_test"
     }}
-    stage("valid") {
-        steps {
-          echo 'Send an email with approval link'
-          sh "play/build/tst/Factorial_test"
+    post {
+        always {
+          emailext body:'test mail' ,reciepientProviders: [[$class: 'sonalisajwan18@gmail.com'],[$class: 'sonalisajwan18@gmail.com']], subject:'Test'
+         
     }}
     
     stage("deploy") {
