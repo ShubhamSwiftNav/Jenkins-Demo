@@ -28,7 +28,7 @@ pipeline {
     stage('valid') {
         steps {
           echo 'send mail'
-          emailext body:'test mail' ,reciepientProviders: [[$class: 'sonalisajwan18@gmail.com'],[$class: 'sonalisajwan18@gmail.com']], subject:'Test'
+          emailext body:'test mail' ,recipientProviders: [[$class: 'sonalisajwan18@gmail.com'],[$class: 'sonalisajwan18@gmail.com']], subject:'Test'
          
     }}
     
