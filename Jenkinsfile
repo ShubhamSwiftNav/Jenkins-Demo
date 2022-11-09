@@ -24,12 +24,8 @@ pipeline {
         steps {
           echo 'testing the application...'
           sh "play/build/tst/Factorial_test"
-    }}
-    stage('valid') {
-        steps {
-          echo 'send mail'
-          emailext body:'test mail' ,recipientProviders: [[$class: 'DevelopersRecipientProvider'],[$class: 'RequestRecipientProvider']], subject:'Test'
-         
+    
+    
     }}
     
     stage("deploy") {
