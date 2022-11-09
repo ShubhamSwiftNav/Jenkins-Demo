@@ -3,7 +3,7 @@ pipeline {
   agent any
 
     //Parametrize your Build
-    //// select version of the application you want to deploy .
+    ////// select version of the application you want to deployyyyy .
 
   stages {
 
