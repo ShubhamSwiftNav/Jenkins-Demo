@@ -15,7 +15,7 @@ pipeline {
         steps {
         echo 'building the application...'
         sh 'rm -rf play'
-        sh 'mkdir play && cd play && cp -r /home/Download/Jenkins/Project/Jenkins-Demo .'
+        sh 'mkdir play && cd play && cp -r /home/jangoo/Download/Jenkins/Project/Jenkins-Demo .'
         sh 'cd play && mkdir build && cd build && cmake ../.. && cmake --build .'
         sh ''
     }}
