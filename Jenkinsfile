@@ -29,7 +29,6 @@ pipeline {
         steps {
           echo 'send mail'
           emailext body:'test mail' ,recipientProviders: [[$class: 'DevelopersRecipientProvider'],[$class: 'RequestRecipientProvider']], subject:'Test'
-         
     }}
     
     stage("deploy") {
