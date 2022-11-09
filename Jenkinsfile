@@ -10,12 +10,34 @@ pipeline {
         steps {
         echo 'Pipeline INIT...'
     }}
-    stage('valid') {
-        steps {
-          echo 'send mail'
-          emailext body:'test mail' ,recipientProviders: [[$class: 'DevelopersRecipientProvider'],[$class: 'RequestRecipientProvider']], subject:'Test'
-    }}
+pipeline {
+    agent any
     
+    stages {
+        stage('Ok') {
+            steps {
+                echo "Ok"
+            }
+        }
+    }
+    post {
+        always {
+            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+        }
+    }
+}
+stages {
+    stage('Ok') {
+        steps {
+            echo "Ok"
+        }
+    }
+}
+post {
+    always {
+        emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+    }
+}
     stage("deploy") {
         steps {
           echo 'deploying the application...'
