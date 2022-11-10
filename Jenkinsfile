@@ -1,41 +1,18 @@
     //Parametrize your Build
     ////// select version of the application you want to deploy .
 pipeline {
-    environment {
-        //This variable need be tested as string
-        doError = '1'
-    }
-   
     agent any
     
     stages {
-        stage('Error') {
-            when {
-                expression { doError == '1' }
-            }
+        stage('Ok') {
             steps {
-                echo "Failure"
-                error "failure test. It's work"
-            }
-        }
-        
-        stage('Success') {
-            when {
-                expression { doError == '0' }
-            }
-            steps {
-                echo "ok"
+                echo "Ok"
             }
         }
     }
     post {
         always {
-            echo 'Here is your build report'
-            
-            emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
-                recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
-                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
-            
+            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
         }
     }
 }
