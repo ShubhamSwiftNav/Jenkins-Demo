@@ -10,7 +10,6 @@ pipeline {
         steps {
         echo 'Pipeline INIT...'
     }}
-pipeline {
     agent any
     
     stages {
@@ -32,4 +31,3 @@ pipeline {
         }
     }
   }
-}
