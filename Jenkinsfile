@@ -2,10 +2,6 @@
     ////// select version of the application you want to deploy .
 pipeline {
     agent any
-    environment {
-        //This variable need be tested as string
-        doError = '1'
-    }
     stages {
         
         stage('init') {
@@ -22,17 +18,18 @@ pipeline {
     }}
     stage('test') {
         steps {
-            echo 'testing the application...'
-            sh "play/build/tst/Factorial_test"
+          echo 'testing the application...'
+          sh "play/build/tst/Factorial_test"
     }}
+        stage('Ok') {
+            steps {
+                echo "Ok"
+            }
+        }
+    }
     post {
         always {
-            echo 'I will always say Hello again!'
-            
-            emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
-            recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
-            subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
-            }
-            }
-}
+            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+        }
+    }
 }
