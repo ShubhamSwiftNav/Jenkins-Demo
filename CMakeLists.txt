@@ -1,3 +1,4 @@
+cmake_minimum_required(VERSION 3.22)
 project(Factorial)
 
 set(SOURCES src/main.cpp src/Factorial.cpp )
