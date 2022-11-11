@@ -1,7 +1,12 @@
     //Parametrize your Build
     ////// select version of the application you want to deploy .
+cmake_minimum_required(VERSION 3.22)
 pipeline {
     agent any
+    environment {
+        //This variable need be tested as string
+        doError = '1'
+    }
     stages {
         
         stage('init') {
@@ -18,18 +23,34 @@ pipeline {
     }}
     stage('test') {
         steps {
-          echo 'testing the application...'
-          sh "play/build/tst/Factorial_test"
+            echo 'testing the application...'
+            sh "play/build/tst/Factorial_test"
     }}
-        stage('Ok') {
-            steps {
-                echo "Ok"
+    stage('Error') {
+        when {
+            expression { doError == '1' }
             }
-        }
-    }
+            steps {
+                echo "Failure"
+                error "failure test. It's work"
+            }
+            }
+    stage('Success') {
+        when {
+            expression { doError == '0' }
+            }
+            steps {
+                echo "ok"
+                }
+                }
+                }
     post {
         always {
-            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
-        }
-    }
+            echo 'I will always say Hello again!'
+            
+            emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
+            recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
+            subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+            }
+            }
 }
