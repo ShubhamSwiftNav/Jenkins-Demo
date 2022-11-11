@@ -1,6 +1,5 @@
     //Parametrize your Build
     ////// select version of the application you want to deploy .
-cmake_minimum_required(VERSION 3.22)
 pipeline {
     agent any
     environment {
