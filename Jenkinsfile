@@ -1,6 +1,6 @@
         emailext mimeType: 'text/html',
                  subject: "[Jenkins]${currentBuild.fullDisplayName}",
-                 to: "tom@xxx.com",
+                 recipientProviders: [[$class: 'RequesterRecipientProvider']],
                  body: '''<a href="${BUILD_URL}input">click to approve</a>'''
 
         def userInput = input id: 'userInput',
