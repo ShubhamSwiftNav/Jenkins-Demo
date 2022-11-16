@@ -32,14 +32,14 @@ pipeline {
             success {
             echo 'Success Mail Body'
             
-            emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} Commit id ${env.GIT_COMMIT} Build ${env.BUILD_NUMBER} Build id ${env.BUILD_ID}\n More info at: ${env.BUILD_URL}\n For now you can proceed to third step which is authorization LINK LINK",
+            emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} Commit id ${env.GIT_COMMIT} Build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}\n For now you can proceed to third step which is authorization LINK LINK",
             recipientProviders: [[$class: 'RequesterRecipientProvider']],
             subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
             }
             failure {
             echo 'Fail Mail Body'
                 
-            emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} Commit id ${env.GIT_COMMIT} Build ${env.BUILD_NUMBER} Build id ${env.BUILD_ID}\n More info at: ${env.BUILD_URL}\n You cannot proceed to third step because your jenkins has failed please try again",
+            emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} Commit id ${env.GIT_COMMIT} Build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}\n You cannot proceed to third step because your jenkins has failed please try again",
             recipientProviders: [[$class: 'RequesterRecipientProvider']],
             subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
             }
