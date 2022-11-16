@@ -18,7 +18,6 @@ pipeline {
         sh 'rm -rf play'
         sh 'mkdir play && cd play && cp -r /home/jangoo/Downloads/Jenkins/Project/Jenkins-Demo/ .'
         sh 'cd play && mkdir build && cd build && cmake ../.. && cmake --build .'
-        sh ''
     }}
     stage('test') {
         steps {
