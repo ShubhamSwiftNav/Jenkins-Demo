@@ -1,4 +1,3 @@
-#include "Factorial.h"
 
 unsigned long long Factorial::GetFactorial(int input)
 {
