@@ -32,10 +32,22 @@ pipeline {
             success {
             echo 'Success Mail Body'
             
-            emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} Commit id ${env.GIT_COMMIT} Build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}\n For now you can proceed to third step which is authorization LINK LINK",
+            emailext body: body: '''<a href="${BUILD_URL}input">click to approve</a>''',
             recipientProviders: [[$class: 'RequesterRecipientProvider']],
             subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
             }
+            stage('deploy') {
+            input {
+                message "Should we continue?"
+                ok "Yes"
+            }
+            when {
+                expression { user == 'hardCodeApproverJenkinsId'}
+            }
+            steps {
+                sh "echo 'describe your deployment' "
+            }
+        }
             failure {
             echo 'Fail Mail Body'
                 
