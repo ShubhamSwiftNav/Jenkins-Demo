@@ -53,7 +53,7 @@
             emailext body: '''<a href="${BUILD_URL}input">click to approve</a>''',
             recipientProviders: [[$class: 'RequesterRecipientProvider']],
             subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
-            }
+    
                 def userInput = input id: 'userInput',
                               message: 'Let\'s promote?', 
                               submitterParameter: 'submitter',
@@ -61,6 +61,10 @@
                               parameters: [
                                 [$class: 'TextParameterDefinition', defaultValue: 'sit', description: 'Environment', name: 'env'],
                                 [$class: 'TextParameterDefinition', defaultValue: 'k8s', description: 'Target', name: 'target']]
+            echo ("Env: "+userInput['env'])
+            echo ("Target: "+userInput['target'])
+            echo ("submitted by: "+userInput['submitter'])
+            }
 
             failure {
             echo 'Fail Mail Body'
