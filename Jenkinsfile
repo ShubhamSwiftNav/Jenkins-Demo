@@ -27,25 +27,7 @@
                 }
             }
         }
-        //this will grab user - who is running the job
-        def user
-            node {
-    wrap([$class: 'BuildUser']) {
-    user = env.BUILD_USER_ID
-  }
-        stage('deploy') {
-            input {
-                message "Should we continue?"
-                ok "Yes"
-            }
-            when {
-                expression { user == 'hardCodeApproverJenkinsId'}
-            }
-            steps {
-                sh "echo 'describe your deployment' "
-            }
-        }
-}
+    }
         post {
             success {
             echo 'Success Mail Body'
@@ -73,6 +55,5 @@
             recipientProviders: [[$class: 'RequesterRecipientProvider']],
             subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
             }
-}
 }
 }
