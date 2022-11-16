@@ -32,7 +32,7 @@ pipeline {
             success {
             echo 'Success Mail Body'
             
-            emailext body: body: '''<a href="${BUILD_URL}input">click to approve</a>''',
+            emailext body: '''<a href="${BUILD_URL}input">click to approve</a>''',
             recipientProviders: [[$class: 'RequesterRecipientProvider']],
             subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
             }
