@@ -1,11 +1,5 @@
     //Parametrize your Build
     ////// select version of the application you want to deploy .
-//this will grab user - who is running the job
-def user
-node {
-  wrap([$class: 'BuildUser']) {
-    user = env.BUILD_USER_ID
-  }
 pipeline {
     agent any
     stages {
@@ -33,6 +27,12 @@ pipeline {
                 }
             }
         }
+        //this will grab user - who is running the job
+        def user
+            node {
+    wrap([$class: 'BuildUser']) {
+    user = env.BUILD_USER_ID
+  }
         stage('deploy') {
             input {
                 message "Should we continue?"
