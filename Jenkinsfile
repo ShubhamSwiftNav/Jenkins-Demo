@@ -35,6 +35,7 @@
             emailext body: '''<a href="${BUILD_URL}input">click to approve</a>''',
             recipientProviders: [[$class: 'RequesterRecipientProvider']],
             subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+                script{
     
                 def userInput = input id: 'userInput',
                               message: 'Let\'s promote?', 
@@ -46,6 +47,7 @@
             echo ("Env: "+userInput['env'])
             echo ("Target: "+userInput['target'])
             echo ("submitted by: "+userInput['submitter'])
+            }
             }
 
             failure {
