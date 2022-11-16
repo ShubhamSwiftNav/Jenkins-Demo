@@ -25,24 +25,23 @@ pipeline {
             echo 'testing the application...'
             sh "play/build/tst/Factorial_test"
     }}
-    stage('Error') {
-        when {
-            expression { doError == '1' }
-            }
+        stage('1') {
             steps {
-                echo "Failure"
-                error "failure test. It's work"
+                sh 'exit 0'
             }
-            }
-    stage('Success') {
-        when {
-            expression { doError == '0' }
-            }
+        }
+        stage('2') {
             steps {
-                echo "ok"
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh "exit 1"
                 }
-                }
-                }
+            }
+        }
+        stage('3') {
+            steps {
+                sh 'exit 0'
+            }
+        }    
     post {
         always {
             echo 'I will always say Hello again!'
