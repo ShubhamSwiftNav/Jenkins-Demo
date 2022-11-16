@@ -32,7 +32,7 @@ pipeline {
             success {
             echo 'Mail Body'
             
-            emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}\n For now you can proceed to third step which is authorization LINK LINK",
+                emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} Commit id ${env.GIT_COMMIT} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}\n For now you can proceed to third step which is authorization LINK LINK",
             recipientProviders: [[$class: 'RequesterRecipientProvider']],
             subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
             }
