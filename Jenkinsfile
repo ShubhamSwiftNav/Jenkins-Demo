@@ -1,5 +1,11 @@
     //Parametrize your Build
     ////// select version of the application you want to deploy .
+//this will grab user - who is running the job
+def user
+node {
+  wrap([$class: 'BuildUser']) {
+    user = env.BUILD_USER_ID
+  }
 pipeline {
     agent any
     stages {
@@ -27,16 +33,7 @@ pipeline {
                 }
             }
         }
-}
-        post {
-            success {
-            echo 'Success Mail Body'
-            
-            emailext body: '''<a href="${BUILD_URL}input">click to approve</a>''',
-            recipientProviders: [[$class: 'RequesterRecipientProvider']],
-            subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
-            }
-            stage('deploy') {
+        stage('deploy') {
             input {
                 message "Should we continue?"
                 ok "Yes"
@@ -48,6 +45,16 @@ pipeline {
                 sh "echo 'describe your deployment' "
             }
         }
+}
+        post {
+            success {
+            echo 'Success Mail Body'
+            
+            emailext body: '''<a href="${BUILD_URL}input">click to approve</a>''',
+            recipientProviders: [[$class: 'RequesterRecipientProvider']],
+            subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+            }
+
             failure {
             echo 'Fail Mail Body'
                 
