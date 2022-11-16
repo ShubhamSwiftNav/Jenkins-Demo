@@ -31,9 +31,9 @@ pipeline {
                 }
             }
         }
-       stage('2') {
-           steps {
-            echo 'Send Mail'
+    post {
+        always {
+            echo 'Mail Body'
             
             emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
             recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
