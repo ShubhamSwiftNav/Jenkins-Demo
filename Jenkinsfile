@@ -24,7 +24,7 @@ pipeline {
             echo 'testing the application...'
             sh "play/build/tst/Factorial_test"
     }}
-        stage('1') {
+        stage('Success/Failure') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
                     sh "exit 1"
