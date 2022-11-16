@@ -2,10 +2,6 @@
     ////// select version of the application you want to deploy .
 pipeline {
     agent any
-    environment {
-        //This variable need be tested as string
-        doError = '1'
-    }
     stages {
         
         stage('init') {
