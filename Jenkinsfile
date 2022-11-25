@@ -32,7 +32,7 @@
             success {
             echo 'Success Mail Body'
             
-            emailext body: '''<a href="${BUILD_URL}input">click to approve</a>''',
+            emailext body: '''<a href="${BUILD_URL}input">click to approve</a>''' "${currentBuild.currentResult}: Job ${env.JOB_NAME} Commit id ${env.GIT_COMMIT} Build ${env.BUILD_NUMBER},
             recipientProviders: [[$class: 'RequesterRecipientProvider']],
             subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
                 script{
