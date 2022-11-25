@@ -32,9 +32,9 @@
             success {
             echo 'Success Mail Body'
             
-            emailext body: '''<a href="${BUILD_URL}input">click to approve</a>''',
-            recipientProviders: [[$class: 'RequesterRecipientProvider']],
-            subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+            emailext recipientProviders: [[$class: 'RequesterRecipientProvider']],
+            subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
+            body: '''<a href="${BUILD_URL}input">click to approve</a>'''
                 script{
     
                 def userInput = input id: 'userInput',
