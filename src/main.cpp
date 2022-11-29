@@ -9,5 +9,4 @@ int main(int argc, char* argv[])
    std::cout << "The factorial of " << n << " = " << factorial << std::endl; 
    std::cout<<"hello"<<std::endl;   
    return 0;
-   
 }
