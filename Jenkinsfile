@@ -28,6 +28,14 @@
             }
         }
     }
+       stages {
+        
+        stage('init') {
+        steps {
+        echo 'Pipeline INIT...'
+        }
+        }
+       }
         post {
             success {
             echo 'Success Mail Body'
