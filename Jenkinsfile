@@ -30,9 +30,9 @@
     }
        stages {
         
-        stage('init') {
+        stage('parallel stage for jenkins') {
         steps {
-        echo 'Pipeline INIT...'
+        echo 'Pipeline .'
         }
         }
        }
