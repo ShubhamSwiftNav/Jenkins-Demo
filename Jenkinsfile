@@ -28,14 +28,6 @@
             }
         }
     }
-       stages {
-        
-        stage('parallel stage for jenkins') {
-        steps {
-        echo 'Pipeline .'
-        }
-        }
-       }
         post {
             success {
             echo 'Success Mail Body'
